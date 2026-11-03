@@ -1,41 +1,41 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","22782","Товар не в наличии нельзя положить в корзину","","2026-11-03","passed","2026-11-03","","Страница товара","shop.tests.ui.ProductUiTest","outOfStockProductCannotBeAdded"
+"Корзина создаётся и наполняется через API, затем её идентификатор отдаётся браузеру.
+Интерфейс должен показать тот же товар, то же количество и верные суммы —
+без единого клика на подготовку данных.
+","2383","Корзина, собранная запросами, целиком отображается в интерфейсе","","2026-11-03","passed","2026-11-03","","Корзина одинакова со стороны API и со стороны браузера","shop.tests.e2e.CartAcrossApiAndUiTest","cartFilledViaApiIsRenderedInUi"
+"","2325","Удалённый товар исчезает из корзины","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","removedProductDisappearsFromCart"
+"","442","Поиск отдаёт товары, относящиеся к запросу","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","searchReturnsRelevantProducts"
+"","461","Сортировка по возрастанию цены действительно сортирует","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogSortsByPriceAscending"
+"","2307","Добавленный товар попадает в корзину с нужным количеством","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","addedProductAppearsInCart"
 "Обратное направление: товар кладётся в корзину кликами, после чего корзина
 читается запросом по идентификатору из sessionStorage. Проверяем, что
 фронтенд и бэкенд видят одно и то же.
-","9306","Товар, добавленный в браузере, виден в корзине через API","","2026-11-03","passed","2026-11-03","","Корзина одинакова со стороны API и со стороны браузера","shop.tests.e2e.CartAcrossApiAndUiTest","productAddedInUiIsVisibleThroughApi"
-"","1767","Удалённый товар исчезает из корзины","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","removedProductDisappearsFromCart"
-"","804","Ответ каталога соответствует JSON Schema","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogMatchesJsonSchema"
-"","31","Вход с корректными данными возвращает Bearer-токен","","2026-11-03","skipped","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginReturnsBearerToken"
-"","1728","Неверные учётные данные показывают ошибку и не пускают внутрь","","2026-11-03","passed","2026-11-03","","Форма входа","shop.tests.ui.LoginUiTest","invalidCredentialsAreRejected"
-"","1780","Количество товара в корзине меняется","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","productQuantityCanBeChanged"
+","1573","Товар, добавленный в браузере, виден в корзине через API","","2026-11-03","passed","2026-11-03","","Корзина одинакова со стороны API и со стороны браузера","shop.tests.e2e.CartAcrossApiAndUiTest","productAddedInUiIsVisibleThroughApi"
+"","452","Несуществующий товар отдаёт 404","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","unknownProductReturnsNotFound"
+"","453","Защищённые ресурсы недоступны без токена GET /users без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
+"Поиск учитывает не только название, но и описание товара, поэтому проверять
+вхождение строки в название неверно: по запросу «pliers» законно находятся
+«Bolt Cutters». Эталон — ответ API на тот же запрос.
+","1667","Выдача поиска в браузере совпадает с выдачей API","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","searchResultsMatchApi"
 "Анонимный POST /products с синтаксически корректным телом завершается
 внутренней ошибкой сервера. Ожидаемое поведение — 401 Unauthorized:
 авторизация должна проверяться до обработки тела запроса.
 Текущее поведение зафиксировано, чтобы отследить починку.
-","393","Создание товара без токена отдаёт 500 вместо 401","","2026-11-03","passed","2026-11-03","","Зафиксированные дефекты контракта","shop.tests.api.KnownDefectsTest","anonymousProductCreationFailsWithServerError"
-"","1205","С формы входа доступна регистрация","","2026-11-03","passed","2026-11-03","","Форма входа","shop.tests.ui.LoginUiTest","registrationIsReachableFromLogin"
-"","382","Сортировка по возрастанию цены действительно сортирует","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogSortsByPriceAscending"
-"","1103","Новая корзина создаётся пустой","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","newCartIsEmpty"
-"","330","Защищённые ресурсы недоступны без токена GET /users/me без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
-"","1116","Товар не в наличии нельзя положить в корзину","","2026-11-03","passed","2026-11-03","","Страница товара","shop.tests.ui.ProductUiTest","outOfStockProductCannotBeAdded"
-"","3013","Добавленный товар попадает в корзину с нужным количеством","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","addedProductAppearsInCart"
-"","77142","Страницы каталога не повторяются и отдают корректные метаданные","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogIsPaginated"
-"","472","Вход с неизвестными учётными данными отклоняется с 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginWithUnknownCredentialsIsRejected"
-"","396","Поиск отдаёт товары, относящиеся к запросу","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","searchReturnsRelevantProducts"
-"","364","Защищённые ресурсы недоступны без токена GET /users без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
-"Поиск учитывает не только название, но и описание товара, поэтому проверять
-вхождение строки в название неверно: по запросу «pliers» законно находятся
-«Bolt Cutters». Эталон — ответ API на тот же запрос.
-","1454","Выдача поиска в браузере совпадает с выдачей API","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","searchResultsMatchApi"
+","463","Создание товара без токена отдаёт 500 вместо 401","","2026-11-03","passed","2026-11-03","","Зафиксированные дефекты контракта","shop.tests.api.KnownDefectsTest","anonymousProductCreationFailsWithServerError"
+"","3854","Страницы каталога не повторяются и отдают корректные метаданные","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogIsPaginated"
+"","435","Защищённые ресурсы недоступны без токена GET /users/me без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
+"","1312","Новая корзина создаётся пустой","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","newCartIsEmpty"
+"","992","Фильтр по бренду отдаёт товары только этого бренда","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogFiltersByBrand"
+"","573","Вход с неизвестными учётными данными отклоняется с 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginWithUnknownCredentialsIsRejected"
 "Эталоном служит ответ API на тот же запрос сортировки. Сравнение всего списка
 целиком заодно решает проблему асинхронной перерисовки: Selenide дожидается,
 пока содержимое страницы совпадёт с ожидаемым, вместо чтения устаревшей выдачи.
-","1412","При сортировке по цене каталог показывает то же, что отдаёт API","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","catalogMatchesApiOrderWhenSortedByPrice"
-"Корзина создаётся и наполняется через API, затем её идентификатор отдаётся браузеру.
-Интерфейс должен показать тот же товар, то же количество и верные суммы —
-без единого клика на подготовку данных.
-","2204","Корзина, собранная запросами, целиком отображается в интерфейсе","","2026-11-03","passed","2026-11-03","","Корзина одинакова со стороны API и со стороны браузера","shop.tests.e2e.CartAcrossApiAndUiTest","cartFilledViaApiIsRenderedInUi"
-"","1129","На главной отображаются карточки товаров с названием и ценой","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","catalogShowsProductCards"
-"","844","Фильтр по бренду отдаёт товары только этого бренда","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogFiltersByBrand"
-"","401","Несуществующий товар отдаёт 404","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","unknownProductReturnsNotFound"
-"","1124","Название и цена на странице совпадают с данными API","","2026-11-03","passed","2026-11-03","","Страница товара","shop.tests.ui.ProductUiTest","productPageMatchesApiData"
+","1447","При сортировке по цене каталог показывает то же, что отдаёт API","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","catalogMatchesApiOrderWhenSortedByPrice"
+"","2254","Количество товара в корзине меняется","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","productQuantityCanBeChanged"
+"","709","Ответ каталога соответствует JSON Schema","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogMatchesJsonSchema"
+"","1784","Неверные учётные данные показывают ошибку и не пускают внутрь","","2026-11-03","passed","2026-11-03","","Форма входа","shop.tests.ui.LoginUiTest","invalidCredentialsAreRejected"
+"","1283","На главной отображаются карточки товаров с названием и ценой","","2026-11-03","passed","2026-11-03","","Каталог в браузере","shop.tests.ui.CatalogUiTest","catalogShowsProductCards"
+"","1517","С формы входа доступна регистрация","","2026-11-03","passed","2026-11-03","","Форма входа","shop.tests.ui.LoginUiTest","registrationIsReachableFromLogin"
+"","20","Вход с корректными данными возвращает Bearer-токен","","2026-11-03","skipped","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginReturnsBearerToken"
+"","1356","Название и цена на странице совпадают с данными API","","2026-11-03","passed","2026-11-03","","Страница товара","shop.tests.ui.ProductUiTest","productPageMatchesApiData"

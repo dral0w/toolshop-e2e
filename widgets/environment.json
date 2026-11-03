@@ -1,1 +1,1 @@
-[{"values":["http://localhost:8091"],"name":"API base URI"},{"values":["false"],"name":"Credentials provided"},{"values":["21.0.13"],"name":"Java"},{"values":["Linux"],"name":"OS"},{"values":["http://localhost:4200"],"name":"UI base URL"}]
+[{"values":["https://api.practicesoftwaretesting.com"],"name":"API base URI"},{"values":["false"],"name":"Credentials provided"},{"values":["21.0.13"],"name":"Java"},{"values":["Linux"],"name":"OS"},{"values":["https://practicesoftwaretesting.com"],"name":"UI base URL"}]
