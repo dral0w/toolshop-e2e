@@ -16,6 +16,11 @@ public final class Config {
                 .orElse("https://api.practicesoftwaretesting.com");
     }
 
+    public static String uiBaseUrl() {
+        return resolve("toolshop.uiBaseUrl", "TOOLSHOP_UI_BASE_URL")
+                .orElse("https://practicesoftwaretesting.com");
+    }
+
     public static Optional<Credentials> credentials() {
         Optional<String> email = resolve("toolshop.email", "TOOLSHOP_EMAIL");
         Optional<String> password = resolve("toolshop.password", "TOOLSHOP_PASSWORD");
