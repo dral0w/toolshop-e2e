@@ -1,0 +1,6 @@
+# В репозитории всегда LF: сборка идёт на Linux в GitHub Actions
+* text=auto eol=lf
+
+*.jar binary
+*.png binary
+*.jpg binary
