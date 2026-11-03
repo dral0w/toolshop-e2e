@@ -9,11 +9,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-import static org.hamcrest.Matchers.lessThan;
-
 public final class Specs {
-
-    private static final long MAX_RESPONSE_TIME_MS = 15_000L;
 
     private Specs() {
     }
@@ -46,10 +42,11 @@ public final class Specs {
         return status(201);
     }
 
+    // Время ответа намеренно не проверяется: стенд общий и бесплатный, его задержки —
+    // свойство окружения, а не контракта. Такая проверка даёт ложные падения.
     public static ResponseSpecification status(int statusCode) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
-                .expectResponseTime(lessThan(MAX_RESPONSE_TIME_MS))
                 .build();
     }
 
