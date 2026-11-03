@@ -1,0 +1,20 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","504","Вход с неизвестными учётными данными отклоняется с 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginWithUnknownCredentialsIsRejected"
+"","532","Поиск отдаёт товары, относящиеся к запросу","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","searchReturnsRelevantProducts"
+"","2524","Количество товара в корзине меняется","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","productQuantityCanBeChanged"
+"","493","Защищённые ресурсы недоступны без токена GET /users без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
+"","2535","Удалённый товар исчезает из корзины","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","removedProductDisappearsFromCart"
+"","860","Ответ каталога соответствует JSON Schema","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogMatchesJsonSchema"
+"","6817","Добавленный товар попадает в корзину с нужным количеством","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","addedProductAppearsInCart"
+"","484","Защищённые ресурсы недоступны без токена GET /users/me без токена → 401","","2026-11-03","passed","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","protectedEndpointsRejectAnonymousRequests"
+"","990","Фильтр по бренду отдаёт товары только этого бренда","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogFiltersByBrand"
+"","1510","Новая корзина создаётся пустой","","2026-11-03","passed","2026-11-03","","/carts — жизненный цикл корзины","shop.tests.api.CartApiTest","newCartIsEmpty"
+"","33","Вход с корректными данными возвращает Bearer-токен","","2026-11-03","skipped","2026-11-03","","Доступ к защищённым ресурсам","shop.tests.api.AuthorizationTest","loginReturnsBearerToken"
+"","485","Несуществующий товар отдаёт 404","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","unknownProductReturnsNotFound"
+"","1024","Страницы каталога не повторяются и отдают корректные метаданные","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogIsPaginated"
+"","488","Сортировка по возрастанию цены действительно сортирует","","2026-11-03","passed","2026-11-03","","GET /products — каталог","shop.tests.api.ProductsApiTest","catalogSortsByPriceAscending"
+"Анонимный POST /products с синтаксически корректным телом завершается
+внутренней ошибкой сервера. Ожидаемое поведение — 401 Unauthorized:
+авторизация должна проверяться до обработки тела запроса.
+Текущее поведение зафиксировано, чтобы отследить починку.
+","557","Создание товара без токена отдаёт 500 вместо 401","","2026-11-03","passed","2026-11-03","","Зафиксированные дефекты контракта","shop.tests.api.KnownDefectsTest","anonymousProductCreationFailsWithServerError"
