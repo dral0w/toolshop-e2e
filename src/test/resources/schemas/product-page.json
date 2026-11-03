@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Страница каталога товаров",
+  "type": "object",
+  "required": ["current_page", "data", "per_page", "total"],
+  "properties": {
+    "current_page": { "type": "integer", "minimum": 1 },
+    "last_page": { "type": "integer", "minimum": 1 },
+    "per_page": { "type": "integer", "minimum": 1 },
+    "total": { "type": "integer", "minimum": 0 },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "price", "brand", "category"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": ["string", "null"] },
+          "price": { "type": "number", "minimum": 0 },
+          "is_location_offer": { "type": ["boolean", "integer"] },
+          "is_rental": { "type": ["boolean", "integer"] },
+          "in_stock": { "type": ["boolean", "integer", "null"] },
+          "brand": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          },
+          "category": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
