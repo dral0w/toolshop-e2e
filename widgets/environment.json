@@ -1,1 +1,1 @@
-[{"values":["https://api.practicesoftwaretesting.com"],"name":"Base URI"},{"values":["false"],"name":"Credentials provided"},{"values":["21.0.12.1"],"name":"Java"},{"values":["Linux"],"name":"OS"}]
+[{"values":["https://api.practicesoftwaretesting.com"],"name":"API base URI"},{"values":["false"],"name":"Credentials provided"},{"values":["21.0.13"],"name":"Java"},{"values":["Linux"],"name":"OS"},{"values":["https://practicesoftwaretesting.com"],"name":"UI base URL"}]
