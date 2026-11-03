@@ -39,10 +39,15 @@ services:
       mariadb:
         condition: service_healthy
 
+  # Опубликованный образ -web собран только под arm64, поэтому берём обычный
+  # nginx и свой конфиг: иначе на amd64 контейнер падает с «exec format error»
   web:
-    image: testsmith/practice-software-testing-web:latest
+    image: nginx:1.23.3-alpine
     ports:
       - "8091:80"
+    volumes:
+      - laravel-app-code:/var/www
+      - ./docker/vhost.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - laravel-api
 
