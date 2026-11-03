@@ -1,0 +1,56 @@
+# Поднимает приложение целиком: интерфейс на 4200, API на 8091.
+#
+# Нужен по двум причинам. Во-первых, публичный стенд закрыт Cloudflare — из CI
+# вместо магазина приходит страница «Verify you are human», и UI-тесты падают.
+# Во-вторых, на своём стенде данные предсказуемы: база пересоздаётся и
+# засевается перед прогоном.
+#
+#   docker compose up -d
+#   docker compose exec laravel-api php artisan migrate:refresh --seed
+#   mvn test -Dtoolshop.uiBaseUrl=http://localhost:4200 -Dtoolshop.baseUri=http://localhost:8091
+
+name: toolshop
+
+services:
+  mariadb:
+    image: yobasystems/alpine-mariadb:10.6.11
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: toolshop
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  laravel-api:
+    image: testsmith/practice-software-testing-sprint5-api:latest
+    environment:
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: "1"
+      DB_PORT: "3306"
+      DB_HOST: mariadb
+      host: localhost
+      DISABLE_LOGGING: "true"
+    volumes:
+      - laravel-app-code:/var/www
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  web:
+    image: testsmith/practice-software-testing-web:latest
+    ports:
+      - "8091:80"
+    depends_on:
+      - laravel-api
+
+  angular-ui:
+    image: testsmith/practice-software-testing-sprint5-ui:latest
+    ports:
+      - "4200:4200"
+    command: bash -c "ng serve --host 0.0.0.0 --port 4200"
+
+volumes:
+  laravel-app-code:
