@@ -2,7 +2,10 @@ package shop.api;
 
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
+import shop.model.Product;
 import shop.model.ProductPage;
+
+import java.util.Optional;
 
 import static io.restassured.RestAssured.given;
 import static shop.config.Specs.ok;
@@ -69,6 +72,21 @@ public final class ProductsApi {
                 .spec(ok())
                 .extract()
                 .as(ProductPage.class);
+    }
+
+    @Step("Найти в каталоге товар в наличии")
+    public static Product firstInStock() {
+        return page(1).data().stream()
+                .filter(product -> Boolean.TRUE.equals(product.inStock()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("в каталоге нет ни одного товара в наличии"));
+    }
+
+    @Step("Найти в каталоге товар, которого нет в наличии")
+    public static Optional<Product> firstOutOfStock() {
+        return page(1).data().stream()
+                .filter(product -> Boolean.FALSE.equals(product.inStock()))
+                .findFirst();
     }
 
     @Step("Запросить товар {productId}")
