@@ -1,4 +1,4 @@
-name: API tests
+name: Tests
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   api-tests:
-    name: Run API tests
+    name: API tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -21,31 +21,60 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Run tests
+      - name: Run API tests
         env:
           TOOLSHOP_EMAIL: ${{ secrets.TOOLSHOP_EMAIL }}
           TOOLSHOP_PASSWORD: ${{ secrets.TOOLSHOP_PASSWORD }}
-        run: mvn -B test
+        run: mvn -B test -Dgroups=api
 
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: allure-results
+          name: allure-results-api
+          path: target/allure-results
+          retention-days: 14
+
+  ui-tests:
+    name: UI and E2E tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Chrome предустановлен на ubuntu-latest, Selenide поднимает его headless
+      - name: Run UI and E2E tests
+        env:
+          TOOLSHOP_EMAIL: ${{ secrets.TOOLSHOP_EMAIL }}
+          TOOLSHOP_PASSWORD: ${{ secrets.TOOLSHOP_PASSWORD }}
+        run: mvn -B test -Dgroups=ui,e2e
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results-ui
           path: target/allure-results
           retention-days: 14
 
   publish-report:
     name: Publish Allure report
-    needs: api-tests
+    needs: [ api-tests, ui-tests ]
     if: always() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v8
+      - name: Collect results of both jobs
+        uses: actions/download-artifact@v8
         with:
-          name: allure-results
+          pattern: allure-results-*
+          merge-multiple: true
           path: allure-results
 
       - name: Load previous report
